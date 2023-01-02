@@ -1,0 +1,60 @@
+
+
+email: yaml@mkyong.com
+thread-pool: 10
+
+wordpress:
+  menus:
+    - title: Home
+      name: Home
+      path: /
+    - title: About
+      name: About
+      path: /about
+  themes:
+    default-folder: /wp-content/themes/mkyong
+  servers:
+    - ip: 127.0.0.1
+      path: /dev1
+    - ip: 127.0.0.2
+      path: /dev2
+    - ip: 127.0.0.
+rabbitmq:
+  image: rabbitmq:management
+  ports:
+    - "5672:5672"
+    - "15672:15672"
+
+spring:
+  application:
+    name: demo-service
+  profiles:
+    active: LOCAL
+  main:
+    banner-mode: off
+  datasource:
+    username: postgres
+    url: jdbc:postgresql://localhost:5432/FirstDB
+    password: 'admin'
+    show-sql: true
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+    hibernate:
+      ddl-auto: update
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+        type:
+          descriptor:
+            sql: trace
+server:
+  servlet:
+    context-path: /demo_service
+  port: 8090
+
+
